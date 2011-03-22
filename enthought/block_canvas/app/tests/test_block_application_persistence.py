@@ -2,8 +2,8 @@
     project-file.
 """
 
-import nose
-raise nose.SkipTest("BlockApplication is deprecated")
+#import nose
+#raise nose.SkipTest("BlockApplication is deprecated")
 
 # Standard imports
 import os, unittest, tempfile

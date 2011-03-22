@@ -221,6 +221,6 @@ if __name__ == '__main__':
 
     interactor = StochasticInteractor(context=context, block=block,
                                       inputs=['b','z'], distribution='gaussian')
-    interactor.edit_traits(kind='livemodal')
+    interactor.configure_traits(kind='livemodal')
 
 ### EOF ------------------------------------------------------------------------

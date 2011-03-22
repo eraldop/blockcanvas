@@ -2,12 +2,12 @@ from numpy import array, ndarray, min, max
 from colorsys import hsv_to_rgb
 
 # Enthought library imports
-from enthought.chaco.api import PlotComponent, VPlotContainer, HPlotContainer, hsv
+from enthought.chaco.api import VPlotContainer, HPlotContainer, hsv
 from enthought.chaco.plot import Plot
 from enthought.chaco.tools.pan_tool import PanTool
-from enthought.chaco.plot_containers import OverlayPlotContainer
+from enthought.chaco.plot_containers import BasePlotContainer,OverlayPlotContainer
 from enthought.enable.api import Window
-from enthought.traits.api import HasTraits, Instance, Bool, List
+from enthought.traits.api import HasTraits, Int, Instance, Bool, List
 from enthought.traits.trait_types import Enum
 from enthought.traits.ui.api import BasicEditorFactory, Editor, Item, View
 
@@ -33,13 +33,15 @@ def color_generator():
 
 class _ContextPlotEditor(Editor):
     scrollable = True
-    plot = Instance(PlotComponent)
+    plot = Instance(BasePlotContainer)
     view_shadows = Bool(True)
     plot_items = List()
     show_all = Bool(False)
     plot_configs = List()  #(PlotConfig)
     orientation = Enum('v', 'h')
-
+    border_size = Int(4)
+    layout_style = Int(5)
+    
     def init(self, parent):
         self.create_plot()
         self._window = Window(parent,

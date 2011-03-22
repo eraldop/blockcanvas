@@ -861,17 +861,7 @@ class Application(HasTraits):
 
 if __name__ == '__main__':
 
-    code =  "from enthought.block_canvas.debug.my_operator import add, mul\n" \
-       "def foo(x, y=3):\n" \
-       "    z = x + y\n" \
-       "    return z\n" \
-       "def bar():\n" \
-       "    pass\n" \
-       "c = add(2, 3)\n" \
-       "d = mul(2, 2)\n" \
-       "e = mul(5, 3)\n" \
-       "f = add(4, 2)\n" \
-       "g = foo(2)\n"
+    code = ""
 
     
     # Enable logging
@@ -879,7 +869,8 @@ if __name__ == '__main__':
     logging.getLogger().addHandler(logging.StreamHandler())
     logging.getLogger().setLevel(logging.DEBUG)
 
-    modules = ['os']
+    modules = ['alpha_mod','corr_fun','plot_fun']
+    #modules = ['test_trait']
 
     class_library = ClassLibrary(modules=modules)
     func_library = FunctionLibrary(modules=modules)
