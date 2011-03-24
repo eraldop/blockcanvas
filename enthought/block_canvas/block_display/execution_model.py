@@ -319,7 +319,7 @@ class ExecutionModel(HasTraits):
 
         # Big optimization with small effort! The exec command works 
         # really bad when the passed context contains "big" object like
-        # that produced by our computations. We remove all of them that there are 
+        # that produced by our computations. We remove all of them that are 
         # going to be overwritten. 
         restricted._clean_old_results_from_context(context)
 
@@ -329,7 +329,6 @@ class ExecutionModel(HasTraits):
             exec restricted.code in globals, context
             t_out = time.time()
             print '%f seconds: Execution time' % (t_out-t_in)
-            
             
         except Exception, _:
             print 'Got exception from code:'
@@ -549,7 +548,6 @@ class ExecutionModel(HasTraits):
         if ids is not None:
             assert(cids==[])
             
-
     def _clean_old_results_from_context(self,context):
         """ Cleans old results in the context.
         
