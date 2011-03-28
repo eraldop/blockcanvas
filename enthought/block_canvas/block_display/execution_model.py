@@ -722,10 +722,10 @@ def available_names_retrive(stmt):
     for statement in stmt:
         for ov in statement.outputs:
             available_names.add(ov.binding)
-        if isinstance(stmt,FunctionCallGroup):
-            for celem in stmt.gfunc.curr_elemts:
+        if isinstance(statement,FunctionCallGroup):
+            for celem in statement.gfunc.curr_elemts:
                 available_names.add(celem.outputs[0].binding)
-            available_names.update(available_names_retrive(stmt.group_statements))
+            available_names.update(available_names_retrive(statement.group_statements))
                     
     return available_names
                         
