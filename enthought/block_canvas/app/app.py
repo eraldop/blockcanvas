@@ -858,11 +858,9 @@ class Application(HasTraits):
         self.execute_for_names()
 
 
-
 if __name__ == '__main__':
 
     code = ""
-
     
     # Enable logging
     import logging

@@ -587,15 +587,17 @@ class ExecutionModel(HasTraits):
 
         local_funcs = []
         imports = {}
-        function_calls = [statement for statement in self.statements \
-                               if isinstance(statement, FunctionCall) ]
-        
-        # Function calls merged into a group 
-        for stmt in self.statements:
-            if isinstance(stmt, FunctionCallGroup):
-                for statement in stmt.group_statements:
-                    function_calls.append(statement)
+        #        function_calls = [statement for statement in self.statements \
+        #                               if isinstance(statement, FunctionCall) ]
+        #        
+        #        # Function calls merged into a group 
+        #        for stmt in self.statements:
+        #            if isinstance(stmt, FunctionCallGroup):
+        #                for statement in stmt.group_statements:
+        #                    function_calls.append(statement)
                 
+        
+        function_calls = explode_model_func_calls(self.statements)
                 
         info_items = set([(call.label_name, call.function) for call in function_calls])
         for name, func in info_items:
@@ -690,5 +692,21 @@ def funcs_name_retrieve(stmt):
             functions.update(funcs_name_retrieve(s.group_statements))
 
     return functions
+
+def explode_model_func_calls(stmt):
+    """ Return the list of function_call included in the model.
+    
+    It recursively run when a FunctionCallGroup is encountered. 
+    """
+    
+    function_calls = [statement for statement in stmt \
+                           if isinstance(statement, FunctionCall) ]
+    
+    # Function calls merged into a group 
+    for statement in stmt:
+        if isinstance(statement, FunctionCallGroup):
+            function_calls.extend(explode_model_func_calls(statement.group_statements))    
+            
+    return function_calls
 
 # EOF
