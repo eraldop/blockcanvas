@@ -195,8 +195,8 @@ class Experiment(HasTraits):
         finally:
             f.close()
 
-        # Clean context
-        self.exec_model._clean_old_results_from_context(self.context.subcontext) 
+        # Clean context - too problematic
+        # self.exec_model._clean_old_results_from_context(self.context.subcontext) 
         
         # Save the local context
         config["local_context"] = "local_context.pickle"
