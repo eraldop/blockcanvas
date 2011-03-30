@@ -299,7 +299,7 @@ class FunctionCallGroup(FunctionCall):
             scripting.app = scripting.app_tree.pop()
                 
         # Clear the deferred names to skip execution & Restore defer_execution
-        scripting.app.project.active_experiment.context._deferred_execution_names = []
+        # scripting.app.project.active_experiment.context._deferred_execution_names = []
         scripting.app.project.active_experiment.context.defer_execution = self._prev_defer_execution
         
         # Restore allow_execution in the calling app 
